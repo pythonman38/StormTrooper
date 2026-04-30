@@ -4,10 +4,19 @@
 [ext_resource type="Script" uid="uid://cqi0jh4xydk01" path="res://scripts/player/camera.gd" id="2_dovo2"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_nnsk1"]
+radius = 0.8
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_rwgxs"]
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_dovo2"]
+margin = 0.01
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_gmlin"]
+margin = 0.01
+radius = 0.1
+
 [node name="Player" type="CharacterBody3D" unique_id=1568844546]
+collision_layer = 2
 script = ExtResource("1_8afob")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=361938803]
@@ -16,9 +25,25 @@ shape = SubResource("CapsuleShape3D_nnsk1")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=496790682]
 mesh = SubResource("CapsuleMesh_rwgxs")
 
-[node name="Camera" type="Node3D" parent="." unique_id=211745531 node_paths=PackedStringArray("character")]
+[node name="Camera" type="Node3D" parent="." unique_id=211745531 node_paths=PackedStringArray("character", "edge_spring_arm", "rear_spring_arm", "camera")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0.5)
 script = ExtResource("2_dovo2")
 character = NodePath("..")
+edge_spring_arm = NodePath("EdgeSpringArm")
+rear_spring_arm = NodePath("EdgeSpringArm/RearSpringArm")
+camera = NodePath("EdgeSpringArm/RearSpringArm/Camera3D")
+aim_edge_spring_length = 0.8
+aim_speed = 0.4
+sprint_fov = 100.0
 
-[node name="Camera3D" type="Camera3D" parent="Camera" unique_id=756322549]
-transform = Transform3D(1, 0, 0, 0, 0.9396927, 0.34202015, 0, -0.34202015, 0.9396927, 1.5, 2, 5)
+[node name="EdgeSpringArm" type="SpringArm3D" parent="Camera" unique_id=328382923]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
+shape = SubResource("SphereShape3D_dovo2")
+
+[node name="RearSpringArm" type="SpringArm3D" parent="Camera/EdgeSpringArm" unique_id=275796992]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
+shape = SubResource("SphereShape3D_gmlin")
+spring_length = 1.5
+
+[node name="Camera3D" type="Camera3D" parent="Camera/EdgeSpringArm/RearSpringArm" unique_id=756322549]
+transform = Transform3D(1, 0, 0, 0, 1, 3.7253e-09, 0, -3.7253e-09, 1, 0.5, 0, 1.5)
