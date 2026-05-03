@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="MovementStats" format=3 uid="uid://dnbih2l6dnaxq"]
+
+[ext_resource type="Script" uid="uid://bvnjlw3ujqdyp" path="res://scripts/player/movement_stats.gd" id="1_qh7di"]
+
+[resource]
+script = ExtResource("1_qh7di")
+time_to_jump_apex = 0.6
+time_to_land = 0.4
+metadata/_custom_type_script = "uid://bvnjlw3ujqdyp"

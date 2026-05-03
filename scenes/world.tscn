@@ -40,4 +40,4 @@ size = Vector3(29, 6.0049195, 29)
 material = ExtResource("1_nnsk1")
 
 [node name="Player" parent="." unique_id=1568844546 instance=ExtResource("2_rwgxs")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1500006, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1500015, 0)
